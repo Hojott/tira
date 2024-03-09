@@ -1,4 +1,5 @@
-from random import random
+class FuckYou(Exception):
+    pass
 
 def is_sorted(t):
     for i in range(1, len(t)):
@@ -7,7 +8,6 @@ def is_sorted(t):
     return True
 
 def solve(t):
-
     tc = t[:]
     moves = []
 
@@ -23,22 +23,19 @@ def solve(t):
         moves.append("MOVE")
 
     while not is_sorted(tc):
-        print(tc)
+        #print(tc)
 
         if tc[1] > tc[0]:
             swap()
         elif tc[-1] > tc[0]:
+            swap()
+        elif tc[0] > len(tc)//2:
             move()
         else:
-            #swap()
-            if random() > 0.5:
-                swap()
-            else:
-                move()
+            swap()
 
-        if t == tc:
-            #panic()
-            moves = []
+        if t == tc or len(moves) > len(tc)**3:
+            raise FuckYou()
 
     return moves
 

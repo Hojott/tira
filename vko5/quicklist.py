@@ -5,13 +5,10 @@ class QuickList:
         self.offset = 0
 
     def move(self, k):
-        for i in range(k):
-            self.id[(i + self.offset) % len(self.id)] += len(self.id)# - self.offset
-        self.offset += k
+        self.offset -= k
 
     def get(self, i):
-        #print(self.t, self.id, self.offset)
-        return self.t[(self.id[i] + self.offset) % len(self.id)]
+        return self.t[(i - self.offset) % len(self.id)]
 
 if __name__ == "__main__":
     q = QuickList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])

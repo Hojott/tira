@@ -1,16 +1,13 @@
 def find(t):
-    sm1 = 1000
-    sm2 = 1000
-    bg1 = 0
-    bg2 = 0
-    df1 = 0
-    df2 = 0
-    for i, v in enumerate(t):
-        sm1 = min(v, sm1)
-        bg1 = max(v, bg1)
-        df1 = max(bg1 - sm1, df1)
-
-    return df1
+    n = len(prices)
+    best1 = 0
+    best2 = 0
+    min_price1 = prices[0]
+    min_price2 = prices[0]
+    for i in range(n):
+        min_price = min(min_price, prices[i])
+        best = max(best, prices[i] - min_price)
+    return best
 
 
 if __name__ == "__main__":
