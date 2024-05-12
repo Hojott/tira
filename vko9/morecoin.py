@@ -1,25 +1,20 @@
 def count(x):
-    sum = 0
 
-    print("-", x)
+    leftover = x % 5
 
-    sum += (x % 5) % 4
-    x -= (x % 5) % 4
+    if x == 3:
+        plus = 3
+    elif leftover == 2 and x < 10:
+        plus = 2
+    elif leftover == 0:
+        plus = 0
+    else:
+        plus = 1
 
-    print("-", x)
+    return x // 5 + plus
 
-    sum += (x % 5) // 4
-    x -= x % 5
-
-    print("-", x)
-
-    sum += x//5
-
-    return sum
 
 if __name__ == "__main__":
-    for i in range(22):
-        print(i, ":", count(i))
-    #print(count(8)) # 2
-    #print(count(12345)) # 2469
-    #print(count(1337**9)) # 2730314408854633746890878156
+    print(count(8)) # 2
+    print(count(12345)) # 2469
+    print(count(1337**9)) # 2730314408854633746890878156

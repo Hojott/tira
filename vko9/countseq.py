@@ -1,16 +1,17 @@
-def find(t):
-    all_sets = {} # last num : seq
+def count(t):
+    all_seqs = {} # last num : seqs
 
     for v in t:
-        found = False
-        if v not in all_sets:
-            all_sets[v] = [v]
-        for last in all_sets:
-            if v > last:
-                if len(all_sets[last]) + 1 > len(all_sets[v]):
-                    all_sets[v] = all_sets[last] + [v]
+        if v not in all_seqs:
+            all_seqs[v] = 1
+        else:
+            all_seqs[v] += 1
 
-    return max(all_sets.values(), key=len)
+        for last in all_seqs:
+            if v > last:
+                all_seqs[v] += all_seqs[last]
+
+    return sum(all_seqs.values())
 
 if __name__ == "__main__":
     print(find([1, 1, 2, 2, 3, 3])) # [1, 2, 3]
